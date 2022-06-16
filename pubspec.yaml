@@ -63,6 +63,10 @@ flutter:
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
+  #
+  #   - family: ShadowsIntoLight-Regular
+  #     fonts:
+  #       - asset: fonts/ShadowsIntoLight-Regular.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
@@ -71,3 +75,12 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+  fonts:
+    - family: ShadowsIntoLight-Regular
+      fonts:
+      - asset: fonts/ShadowsIntoLight-Regular.ttf
+
+    - family: Yesteryear-Regular
+      fonts:
+      - asset: fonts/Yesteryear-Regular.ttf

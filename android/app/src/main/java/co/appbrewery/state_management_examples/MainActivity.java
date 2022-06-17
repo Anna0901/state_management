@@ -1,4 +1,4 @@
-package co.appbrewery.state_management_examples;
+package co.appbrewery.todolist;
 
 import android.os.Bundle;
 import io.flutter.embedding.android.FlutterActivity;

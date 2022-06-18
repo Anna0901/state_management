@@ -8,25 +8,24 @@ class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.lightBlueAccent,
-        child: Icon(
-          Icons.add,
-        ),
-        onPressed: () {
-          showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              builder: (context) => SingleChildScrollView(
-                  child:Container(
-                    padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                    child: AddTaskScreen(),
-                  )
-              )
-          );
-        }
-      ),
+          backgroundColor: Colors.lightBlueAccent,
+          child: Icon(
+            Icons.add,
+          ),
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (context) => SingleChildScrollView(
+                        child: Container(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      child: AddTaskScreen(),
+                    )));
+          }),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -43,10 +42,15 @@ class TasksScreen extends StatelessWidget {
                 CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 30.0,
-                  child: Icon(
-                    Icons.list,
-                    size: 30.0,
-                    color: Colors.lightBlueAccent,
+                  child: FloatingActionButton(
+                    child: Icon(
+                      Icons.list,
+                      size: 30.0,
+                      color: Colors.lightBlueAccent,
+                    ),
+                    onPressed: () {
+                      showAlertDialog(context);
+                    },
                   ),
                 ),
                 SizedBox(
@@ -64,7 +68,7 @@ class TasksScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${Provider.of<TaskData>(context, listen: false).taskCount} Tasks',
+                  '${Provider.of<TaskData>(context, listen: true).taskCount} Tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -88,8 +92,44 @@ class TasksScreen extends StatelessWidget {
               child: TasksList(),
             ),
           ),
+          Container(
+            padding: EdgeInsets.all(30),
+            color: Colors.white,
+          ),
         ],
       ),
     );
   }
+}
+
+showAlertDialog(BuildContext context) {
+  // set up the button
+  Widget okButton = TextButton(
+    child: Text("OK"),
+    onPressed: () {
+      Navigator.pop(context);
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text(
+      "To-do list title",
+      style: TextStyle(
+        color: Colors.lightBlueAccent,
+      ),
+    ),
+    content: Text("Thank you for using my app:)"),
+    actions: [
+      okButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }
